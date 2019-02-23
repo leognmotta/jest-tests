@@ -2,19 +2,17 @@ const { User } = require('../../src/app/models');
 const app = require('../../src/app');
 const request = require('supertest');
 
-describe('Creating documents', () => {
-  it('creates a user', async () => {
+describe('Test routes', () => {
+  it('Test authenticate', async () => {
     const user = await User.create({
       name: 'Leo',
       email: 'test2@test.com',
       password_hash: '123456'
     });
 
-    expect(user.email).toBe('test2@test.com');
-  });
-
-  it('Test express route', async () => {
-    const response = await request(app).get('/');
+    const response = await request(app)
+      .post('/auth')
+      .send({ email: user.email, password_hash: '123456' });
 
     expect(response.status).toBe(200);
   });

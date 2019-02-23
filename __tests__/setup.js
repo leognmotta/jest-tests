@@ -48,3 +48,10 @@ afterEach(function(done) {
 afterAll(done => {
   return done();
 });
+
+module.exports = function clearDB() {
+  for (var i in mongoose.connection.collections) {
+    mongoose.connection.collections[i].deleteOne(function() {});
+  }
+  return done();
+};
