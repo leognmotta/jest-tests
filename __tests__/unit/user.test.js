@@ -1,18 +1,20 @@
 const request = require('supertest');
+const factory = require('../factory');
 const bcrypt = require('bcryptjs');
 
 const { User } = require('../../src/app/models');
 const app = require('../../src/app');
 
 describe('Will test user models', () => {
-  it('Should encrypt user password', async () => {
-    const user = await User.create({
-      nome: 'Leonardo',
-      email: 'leo@dombosco.com',
-      password_hash: '123456'
+  it('Should hash user password', async () => {
+    await factory.create('User', {
+      password_hash: '123456',
+      email: 'leo@dombosco.com'
     });
 
-    const compareHash = await bcrypt.compare('123456', user.password_hash);
+    const user = await User.findOne({ email: 'leo@dombosco.com' });
+
+    const compareHash = await user.checkPassword('123456');
 
     expect(compareHash).toBe(true);
   });

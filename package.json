@@ -4,17 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "pm2 start src/server.js",
     "dev": "nodemon src/server.js --ignore __tests__",
-    "pretest": "SET NODE_ENV=test",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.15"
+    "jsonwebtoken": "^8.5.0",
+    "mongoose": "^5.4.15",
+    "pm2": "^3.3.1"
   },
   "devDependencies": {
     "dotenv": "^6.2.0",
+    "factory-girl": "^5.0.4",
+    "faker": "^4.1.0",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
     "supertest": "^3.4.2"

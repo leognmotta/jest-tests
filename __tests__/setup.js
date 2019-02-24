@@ -4,9 +4,6 @@ require('dotenv').config({
 
 const mongoose = require('mongoose');
 
-// Load models since we will not be instantiating our express server.
-require('../src/app/models');
-
 beforeEach(function(done) {
   /*
     Define clearDB function that will loop through all 
