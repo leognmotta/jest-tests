@@ -9,9 +9,7 @@ routes.get('/', UserController.test);
 
 routes.post('/auth', AuthController.authenticate);
 
-routes.use(isAuth);
-
-routes.get('/dash', (req, res) => {
+routes.get('/dash', isAuth, (req, res) => {
   return res.status(200).send();
 });
 
